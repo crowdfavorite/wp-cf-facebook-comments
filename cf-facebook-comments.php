@@ -8,12 +8,28 @@ Author: Crowd Favorite
 Author URI: http://crowdfavorite.com
 */
 
+
+/**************
+* HEADER WORK *
+**************/
 /* Add the initial facebook javascript */
 function cf_add_fb_js() {
 	wp_enqueue_script('fb_js', 'http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php');
+	
 }
 add_action('init', 'cf_add_fb_js');
 
+/* Add the proper namespace for the facebook XFBML */
+function cf_fb_xfbml_doctype($output) {
+	return 'xmlns:fb="http://www.facebook.com/2008/fbml" '.$output; 
+}
+add_filter('language_attributes', 'cf_fb_xfbml_doctype',$output);
+
+
+
+/**************
+* FOOTER WORK *
+**************/
 /* This script parses the XFBML to allow
 * 	for the 'Connect' tags to be rendered */
 function cf_add_fb_init() {
@@ -28,6 +44,11 @@ function cf_add_fb_init() {
 }
 add_action('wp_footer', 'cf_add_fb_init');
 
+
+
+/****************
+* TEMPLATE TAGS *
+****************/
 /* Template Tag for displaying the Facebook Comment Form 
 * 
 *  Use the filter to apply additional parameters
@@ -41,6 +62,10 @@ function cf_fb_comment_form() {
 	echo cf_get_fb_comment_form();
 }
 
+
+/***************************
+* ADMIN SIDE OF THINGS NOW *
+***************************/
 /* Admin menu now */
 function cf_fb_comments_admin_form() {
 	if (isset($_POST['cf_action']) && $_POST['cf_action'] == 'save_fb_comment_api_key') {
