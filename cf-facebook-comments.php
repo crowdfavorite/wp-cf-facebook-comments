@@ -97,7 +97,7 @@ function cf_fb_comment_admin_menu() {
 	if (current_user_can('manage_options') && function_exists('cf_fb_comment_form')) {
 		add_options_page( 
 			'CF Facebook Comments Detail', 
-			'CF Facebook', 
+			'CF Facebook Comments', 
 			10, 
 			basename(__FILE__), 
 			'cf_fb_comments_admin_form' 
