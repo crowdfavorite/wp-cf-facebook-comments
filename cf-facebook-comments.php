@@ -8,6 +8,7 @@ Author: Crowd Favorite
 Author URI: http://crowdfavorite.com
 */
 
+define('CF_FB_HAS_KEY', get_option('cf_fb_api_key'));
 
 /**************
 * HEADER WORK *
@@ -17,14 +18,16 @@ function cf_add_fb_js() {
 	wp_enqueue_script('fb_js', 'http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php');
 	
 }
-add_action('init', 'cf_add_fb_js');
-
+if (CF_FB_HAS_KEY) {
+	add_action('init', 'cf_add_fb_js');
+}
 /* Add the proper namespace for the facebook XFBML */
 function cf_fb_xfbml_doctype($output) {
 	return 'xmlns:fb="http://www.facebook.com/2008/fbml" '.$output; 
 }
-add_filter('language_attributes', 'cf_fb_xfbml_doctype',$output);
-
+if (CF_FB_HAS_KEY) {
+	add_filter('language_attributes', 'cf_fb_xfbml_doctype',$output);
+}
 
 
 /**************
@@ -42,7 +45,9 @@ function cf_add_fb_init() {
 	</script>
 	<?php
 }
-add_action('wp_footer', 'cf_add_fb_init');
+if (CF_FB_HAS_KEY) {
+	add_action('wp_footer', 'cf_add_fb_init');
+}
 
 
 
