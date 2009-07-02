@@ -62,8 +62,11 @@ if (CF_FB_HAS_KEY) {
 * 	(see http://wiki.developers.facebook.com/index.php/Fb:comments_(XFBML) for
 * 	more information on parameters)*/
 function cf_get_fb_comment_form($arg_string = '') {
+	if ($arg_string != '') {
+		$arg_string = ' '.trim($arg_string);
+	}
 	$xid = apply_filters('cf_fb_comment_xid', urlencode(get_permalink()));
-	$comment_html = '<fb:comments xid="'.$xid.'" '.$arg_string.'></fb:comments>';
+	$comment_html = '<fb:comments xid="'.$xid.'"'.$arg_string.'></fb:comments>';
 	return apply_filters('cf_fb_comment_form', $comment_html);
 }
 function cf_fb_comment_form($arg_string = '') {
