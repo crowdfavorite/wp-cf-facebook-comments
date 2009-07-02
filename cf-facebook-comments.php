@@ -66,7 +66,7 @@ function cf_get_fb_comment_form($arg_string = '') {
 	$comment_html = '<fb:comments xid="'.$xid.'" '.$arg_string.'></fb:comments>';
 	return apply_filters('cf_fb_comment_form', $comment_html);
 }
-function cf_fb_comment_form($arg_string) {
+function cf_fb_comment_form($arg_string = '') {
 	echo cf_get_fb_comment_form($arg_string);
 }
 
