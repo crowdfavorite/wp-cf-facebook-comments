@@ -40,7 +40,7 @@ function cf_add_fb_init() {
 	<script type="text/javascript">
 		FB.init(
 			"<?php echo attribute_escape(get_option('cf_fb_api_key')); ?>",
-			"<?php echo attribute_escape(WP_PLUGIN_URL.'/cf-facebook-comments/xd_receiver.php'); ?>"
+			"<?php echo attribute_escape(WPMU_PLUGIN_URL.'/cf-facebook-comments/xd_receiver.php'); ?>"
 		); 
 	</script>
 	<?php
