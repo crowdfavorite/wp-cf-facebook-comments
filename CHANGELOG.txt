@@ -1,0 +1,4 @@
+# CF Facebook Comments
+
+## 0.8
+- Tagging, though needs to be more extensible for future clients
